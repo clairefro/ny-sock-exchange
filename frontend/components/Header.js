@@ -1,7 +1,7 @@
 import React from 'react';
 import Nav from './Nav';
 import Link from 'next/link';
-import styled, { ThemeProvider, injectGlobal } from 'styled-components';
+import styled from 'styled-components';
 
 const Logo = styled.h1`
   font-size: 2rem;
@@ -40,6 +40,7 @@ const StyledHeader = styled.div`
     border-bottom: 1px solid ${props => props.theme.lightgrey};
   }
 `;
+
 
 const Header = (props) => (
   <StyledHeader>
