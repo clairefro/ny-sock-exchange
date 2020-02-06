@@ -2,7 +2,7 @@ const { forwardTo } = require('prisma-binding');
 
 // note: 'dogs() {}' is shorthand for 'dogs: function() {}'
 const Query = {
-  items: forwardTo('db');
+  items: forwardTo('db')
   // async items(parent, args, ctx, info) {
   //   const items = await ctx.db.query.items();
   //   return items;
