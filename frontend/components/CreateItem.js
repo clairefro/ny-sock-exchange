@@ -88,7 +88,7 @@ class CreateItem extends Component {
 
         }}>
           <ErrorMessage error={error}/>
-          <fieldset disabled={loading} aria-busy={loading}>
+          <fieldset disabled={loading} aria-busy={loading || this.state.isLoadingImage}>
 
             <label htmlFor="file">
               Product Image
@@ -141,7 +141,7 @@ class CreateItem extends Component {
                 onChange={this.handleChange}
               />
             </label>
-            <button type="submit">Submit</button>
+            <button disabled={this.state.isLoadingImage ? true : false} type="submit">Submit</button>
           </fieldset>
         </Form>
 

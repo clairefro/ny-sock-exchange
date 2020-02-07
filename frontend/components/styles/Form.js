@@ -24,8 +24,7 @@ const Form = styled.form`
     display: block;
     margin-bottom: 1rem;
     .loading-text {
-      font-size: 10px;
-      font-weight: normal;
+      font-style: italic;
     }
   }
   input,
@@ -49,6 +48,9 @@ const Form = styled.form`
     font-size: 2rem;
     font-weight: 600;
     padding: 0.5rem 1.2rem;
+    &[disabled] {
+      background: ${props => props.theme.lightgrey};
+    }
   }
   fieldset {
     border: 0;
