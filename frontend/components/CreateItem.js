@@ -101,7 +101,13 @@ class CreateItem extends Component {
                 onChange={this.uploadFile}
               />
               {this.state.isLoadingImage && <p className="loading-text">Loading your image...</p>}
-              {this.state.image && <img width="200" src={this.state.image} alt="preview"/>}
+              {this.state.image &&
+                <img width="200"
+                     src={this.state.image
+                         .replace('https://res.cloudinary.com/advreactwgqlwb/image/upload/',
+                                  'https://res.cloudinary.com/advreactwgqlwb/image/upload/t_media_lib_thumb/'
+                         )}
+                     alt="preview"/>}
             </label>
 
             <label htmlFor="title">
