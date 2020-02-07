@@ -12,7 +12,7 @@ class MyApp extends App {
     }
     // exposes query to user
     pageProps.query = ctx.query;
-    return pageProps;
+    return { pageProps };
   }
 
   render() {
