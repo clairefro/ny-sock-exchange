@@ -34,6 +34,7 @@ class CreateItem extends Component {
     image: '',
     largeImage: '',
     price: 0,
+    isLoadingImage: false,
   }
 
   handleChange = (e) => {
@@ -42,6 +43,30 @@ class CreateItem extends Component {
 
     // name is 'title', 'price', 'description' etc
     this.setState({ [name]: val });
+  }
+
+  uploadFile = async (e) => {
+    console.log('uploading file...');
+    // get file
+    this.setState({ isLoadingImage: true });
+    const files = e.target.files;
+    const data = new FormData();
+    // these below are needed by cloudinary
+    data.append('file', files[0]);
+    data.append('upload_preset', 'sickfits');
+    // hit the cloudinary api
+    const res = await fetch('https://api.cloudinary.com/v1_1/dgxkozw6v/image/upload', {
+        method: "POST",
+        body: data
+    });
+    const file = await res.json();
+    console.log(file);
+
+    this.setState({
+      image: file.secure_url,
+      largeImage: file.eager[0].secure_url,
+      isLoadingImage: false,
+    });
   }
 
   render() {
@@ -59,11 +84,26 @@ class CreateItem extends Component {
           Router.push({
             pathname: '/item',
             query: { id: res.data.createItem.id }
-          })
+          });
 
         }}>
           <ErrorMessage error={error}/>
           <fieldset disabled={loading} aria-busy={loading}>
+
+            <label htmlFor="file">
+              Product Image
+              <input
+                type="file"
+                id="file"
+                name="file"
+                placeholder="Upload an image"
+                required
+                onChange={this.uploadFile}
+              />
+              {this.state.isLoadingImage && <p className="loading-text">Loading your image...</p>}
+              {this.state.image && <img width="200" src={this.state.image} alt="preview"/>}
+            </label>
+
             <label htmlFor="title">
               Title
               <input

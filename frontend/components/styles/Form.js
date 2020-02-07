@@ -23,6 +23,10 @@ const Form = styled.form`
   label {
     display: block;
     margin-bottom: 1rem;
+    .loading-text {
+      font-size: 10px;
+      font-weight: normal;
+    }
   }
   input,
   textarea,
