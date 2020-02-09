@@ -52,7 +52,7 @@ const mutations = {
       }
     }, info);
     // create their JWT token for session
-    const token = jwt.sign({ userID: user.id }, process.env.APP_SECRET);
+    const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
     // set JWT as a cookie on the res
     ctx.response.cookie('token', token, {
       httpOnly: true,
