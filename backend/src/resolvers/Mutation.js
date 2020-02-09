@@ -1,5 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { randomBytes } = require('crypto');
+const { promisify } = require('util');
 
 
 const signTokenAndSetCookie = (user, ctx) => {
@@ -90,6 +92,68 @@ const mutations = {
     // return the user
     return user;
   },
+
+  signout(parent, args, ctx, info){
+    // can use clearCookie method thanks to cookie parser import in index.js
+    ctx.response.clearCookie('token');
+    return { message: 'Goodbye!'};
+  },
+
+  async requestReset(parent, args, ctx, info) {
+    // check if real user
+    const user = await ctx.db.query.user({ where: { email: args.email } });
+    if(!user){
+      throw new Error(`No such user found for: ${args.email}`);
+    }
+    // set reset token and expiry, save those to the user
+    const resetToken = (await promisify(randomBytes)(20)).toString('hex');
+    const resetTokenExpiry = Date.now() + 3600000; // 1hr from now
+    const res = await ctx.db.mutation.updateUser({
+      where: { email: args.email },
+      data: { resetToken, resetTokenExpiry }
+    });
+    console.log(res);
+    return { message: 'password reset token sent' }
+
+    // email them that token
+
+  },
+
+  async resetPasssword(parent, args, ctx, info) {
+    const { resetToken, password, confirmPassword } = args;
+    // check if passwords match
+    if(password !== confirmPassword) {
+      throw new Error('Passwords do not match');
+    }
+    // verify reset token
+    // verify token is not expired
+    const [user] = await ctx.db.query.users({
+      where: {
+        resetToken,
+        resetTokenExpiry_gte: Date.now() - 3600000
+      }
+    });
+    if(!user) {
+      throw new Error('this token is either invalid or expired');
+    }
+    // hash the new password
+    const newPassword = await bcrypt.hash(password, 10);
+    // Save new pw to user and remove old reset token fields
+    const updatedUser = ctx.db.mutation.updateUser({
+      where: { email: user.email },
+      data: {
+        password: newPassword,
+        resetToken: null,
+        resetTokenExpiry: null
+      },
+    });
+    // generate JWT
+    const token = jwt.sign({ userId: updatedUser.id }, process.env.APP_SECRET);
+    // set JWT cookie
+    signTokenAndSetCookie(updatedUser, ctx);
+    // return new user
+    return updatedUser;
+  }
 };
 
 module.exports = mutations;
