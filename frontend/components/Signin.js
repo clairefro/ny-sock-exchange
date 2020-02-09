@@ -40,7 +40,7 @@ class Signin extends Component {
         return (
           <Form method='post' onSubmit={async (e) => {
             e.preventDefault();
-            const res = await signup();
+            await signup();
             this.setState({email: '', name: '', password: ''});
           }}>
             <fieldset disabled={loading} aria-busy={loading}>

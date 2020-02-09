@@ -112,14 +112,13 @@ const mutations = {
       where: { email: args.email },
       data: { resetToken, resetTokenExpiry }
     });
-    console.log(res);
     return { message: 'password reset token sent' }
 
     // email them that token
 
   },
 
-  async resetPasssword(parent, args, ctx, info) {
+  async resetPassword(parent, args, ctx, info) {
     const { resetToken, password, confirmPassword } = args;
     // check if passwords match
     if(password !== confirmPassword) {

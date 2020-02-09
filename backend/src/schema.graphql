@@ -17,7 +17,7 @@ type Mutation {
   signin(email: String!, password: String!): User!
   signout: SuccessMessage
   requestReset(email: String!): SuccessMessage
-  resetPasssword(resetToken: String!, password: String!, confirmPassword: String!): User!
+  resetPassword(resetToken: String!, password: String!, confirmPassword: String!): User!
 }
 
 type User implements Node {
