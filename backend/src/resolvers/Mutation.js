@@ -3,6 +3,8 @@ const jwt = require('jsonwebtoken');
 const { randomBytes } = require('crypto');
 const { promisify } = require('util');
 
+const { transport, makeANiceEmail } = require('../mail');
+
 
 const signTokenAndSetCookie = (user, ctx) => {
   const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
@@ -63,12 +65,6 @@ const mutations = {
       }
     }, info);
     // create their JWT token for session
-    // const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
-    // // set JWT as a cookie on the res
-    // ctx.response.cookie('token', token, {
-    //   httpOnly: true,
-    //   maxAge: 1000 * 60 * 60 * 24 * 365, // one year
-    // });
     signTokenAndSetCookie(user, ctx);
     // return user to browser
     return user;
@@ -112,10 +108,17 @@ const mutations = {
       where: { email: args.email },
       data: { resetToken, resetTokenExpiry }
     });
-    return { message: 'password reset token sent' }
-
     // email them that token
-
+    const mailRes = await transport.sendMail({
+      from: "claire.froelich@gmail.com",
+      to: user.email,
+      subject: 'Your password reset token',
+      html: makeANiceEmail(`You have one hour to reset your password with this token:
+        \n\n
+        <a href="${process.env.FRONTEND_URL}/reset?resetToken=${resetToken}">Click here to reset</a>`)
+    });
+    // return success message
+    return { message: 'password reset token sent' };
   },
 
   async resetPassword(parent, args, ctx, info) {
