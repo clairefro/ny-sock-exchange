@@ -138,7 +138,7 @@ const mutations = {
     // hash the new password
     const newPassword = await bcrypt.hash(password, 10);
     // Save new pw to user and remove old reset token fields
-    const updatedUser = ctx.db.mutation.updateUser({
+    const updatedUser = await ctx.db.mutation.updateUser({
       where: { email: user.email },
       data: {
         password: newPassword,
