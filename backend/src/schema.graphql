@@ -20,6 +20,7 @@ type Mutation {
   requestReset(email: String!): SuccessMessage
   resetPassword(resetToken: String!, password: String!, confirmPassword: String!): User!
   updatePermissions(permissions: [Permission], userId: ID!): User
+  addToCart(id: ID!): CartItem!
 }
 
 type User implements Node {
@@ -30,4 +31,5 @@ type User implements Node {
   resetToken: String
   resetTokenExpiry: Float
   permissions: [Permission!]!
+  cart: [CartItem!]!
 }
