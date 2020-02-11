@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { randomBytes } = require('crypto');
 const { promisify } = require('util');
+const { hasPermission } = require('../utils');
 
 const { transport, makeANiceEmail } = require('../mail');
 
@@ -53,7 +54,7 @@ const mutations = {
     // find item
     const item = await ctx.db.query.item({ where }, `{id title}`)
     // check if they own the item
-    // TODO
+
     // delete
     return ctx.db.mutation.deleteItem({ where }, info);
   },
@@ -162,6 +163,32 @@ const mutations = {
     signTokenAndSetCookie(updatedUser, ctx);
     // return new user
     return updatedUser;
+  },
+
+  async updatePermissions(parent, args, ctx, info) {
+    // check if logged in
+    if(!ctx.request.userId) {
+      throw new Error('You must be logged in')
+    }
+    // query the user
+    const currentUser = await ctx.db.query.user({
+      where: {
+        id: ctx.request.userId
+      },
+    }, info);
+    // check that they have permissions to update permissions
+    hasPermission(currentUser, ['ADMIN', 'PERMISSIONUPDATE']);
+    // update permissions
+    return ctx.db.mutation.updateUser({
+     data: {
+       permissions: {
+          set: args.permissions,
+       },
+     },
+     where: {
+       id: args.userId,
+     },
+   }, info)
   }
 };
 
