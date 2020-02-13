@@ -48,7 +48,10 @@ class RemoveFromCart extends Component {
       variables={{id: this.props.id}}
       update={this.update}
       optimisticResponse={{
-        __typename: 'Mutation'
+        __typename: 'Mutation',
+        removeFromCart: {
+          id: this.props.id,
+        },
       }}
       >
     {(removeFromCart, { loading })=>(
