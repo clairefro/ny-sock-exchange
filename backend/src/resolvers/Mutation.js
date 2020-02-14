@@ -276,8 +276,6 @@ const mutations = {
     // Clean up user's cart , delete cart item const  = styled.`
     //  return Order to client
 
-
-
   },
 };
 

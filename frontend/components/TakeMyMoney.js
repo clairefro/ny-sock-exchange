@@ -43,6 +43,8 @@ class TakeMyMoney extends Component {
     return (
       <User>
         {({ data: { me } }) => {
+          if(!me.cart) return null;
+
           return (
             <Mutation
               mutation={CREATE_ORDER_MUTATION}
@@ -53,7 +55,7 @@ class TakeMyMoney extends Component {
                   amount={calcTotalPrice(me.cart)}
                   name="Sick Fits"
                   description={`Order of ${totalItems(me.cart)} items`}
-                  image={me.cart[0].item && me.cart[0].item.image}
+                  image={me.cart.length && me.cart[0].item && me.cart[0].item.image.toString()}
                   stripeKey="pk_test_FPE4kezM8tLwOelNEeH99FER00Fi9DYv9e"
                   currency="USD"
                   email={me.email}
