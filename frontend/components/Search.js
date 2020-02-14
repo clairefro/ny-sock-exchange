@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Downshift, { resetCounterId } from 'downshift';
+import Downshift, { resetIdCounter } from 'downshift';
 import Router from 'next/router';
 import { ApolloConsumer } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -51,7 +51,7 @@ class Search extends Component {
   }, 350);
 
   render() {
-    resetCounterId();
+    resetIdCounter();
     return (
       <SearchStyles>
         <Downshift
@@ -66,7 +66,7 @@ class Search extends Component {
                 <input
                   {...getInputProps({
                     type: 'search',
-                    placeholder: 'Search for an item',
+                    placeholder: 'Search for an item...',
                     id: 'search',
                     className: this.state.loading ? 'loading' : '',
                     onChange: e => {
