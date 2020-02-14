@@ -248,6 +248,37 @@ const mutations = {
       },
     }, info);
   },
+
+  async createOrder(parent, args, ctx, info) {
+    // query current user, make sure signed in
+    const { userId } = ctx.request;
+    if(!userId) throw new Error('You must be signed in to complete order!');
+    const user = await ctx.db.query.user(
+      { where: { id: userId } },
+      `{
+      id
+      name
+      email
+      cart {
+        id
+        quantity
+        item { title price id description image }
+      }}`
+    );
+    console.log(user);
+    // recalculate price total
+    const amount = user.cart.reduce((tally, cartItem) => tally + cartItem.item.price*cartItem.quantity,
+     0);
+    console.log(`going to charge for ${amount}`);
+    // create stripe charge
+    // convert cart items into order items
+    // create the order
+    // Clean up user's cart , delete cart item const  = styled.`
+    //  return Order to client
+
+
+
+  },
 };
 
 module.exports = mutations;
