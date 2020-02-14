@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const { randomBytes } = require('crypto');
 const { promisify } = require('util');
 const { hasPermission } = require('../utils');
+const stripe = require('../stripe');
 
 const { transport, makeANiceEmail } = require('../mail');
 
@@ -267,10 +268,19 @@ const mutations = {
     );
     console.log(user);
     // recalculate price total
-    const amount = user.cart.reduce((tally, cartItem) => tally + cartItem.item.price*cartItem.quantity,
+    const amount = user.cart.reduce((tally, cartItem) => {
+      console.log(tally);
+      console.log(cartItem.item.price*cartItem.quantity);
+      return tally + cartItem.item.price*cartItem.quantity;
+    },
      0);
     console.log(`going to charge for ${amount}`);
     // create stripe charge
+    const charge = await stripe.charges.create({
+      amount,
+      currency: 'USD',
+      source: args.token,
+    });
     // convert cart items into order items
     // create the order
     // Clean up user's cart , delete cart item const  = styled.`
