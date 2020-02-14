@@ -54,7 +54,7 @@ class Signin extends Component {
                 Password
                 <input type="password" name="password" placeholder="password" value={this.state.password} onChange={this.saveToState}/>
               </label>
-              <button type="submit">Sign Up!</button>
+              <button type="submit">Log in!</button>
             </fieldset>
           </Form>
         );
