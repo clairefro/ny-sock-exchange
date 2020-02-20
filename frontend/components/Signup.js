@@ -36,7 +36,7 @@ class Signup extends Component {
       {(signup, { error, loading }) => {
 
         return (
-          <Form method='post' onSubmit={async (e) => {
+          <Form data-test="form" method='post' onSubmit={async (e) => {
             e.preventDefault();
             const res = await signup();
             this.setState({email: '', name: '', password: ''});
@@ -69,3 +69,4 @@ class Signup extends Component {
 }
 
 export default Signup;
+export { SIGNUP_MUTATION };
