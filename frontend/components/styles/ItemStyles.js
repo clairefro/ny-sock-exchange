@@ -11,6 +11,8 @@ const Item = styled.div`
     width: 100%;
     height: 400px;
     object-fit: cover;
+    filter: grayscale(100%);
+    transition: 0.2s;
   }
   p {
     line-height: 2;
@@ -32,6 +34,10 @@ const Item = styled.div`
       font-size: 1rem;
       padding: 1rem;
     }
+  }
+  &:hover img {
+    transition: 0.2s;
+    filter: grayscale(0);
   }
 `;
 

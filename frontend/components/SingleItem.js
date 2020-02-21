@@ -47,7 +47,7 @@ class SingleItem extends Component {
           const item = data.item
           return <SingleItemStyles>
             <Head>
-              <title>Sick Fits! | {item.title}</title>
+              <title>NY Sock Exchange | {item.title}</title>
             </Head>
             <img src={item.largeImage} alt={item.title}/>
             <div className='details'>

@@ -62,7 +62,7 @@ const Header = (props) => (
     <div className='bar'>
       <Logo>
         <Link href="/">
-          <a>SickFits</a>
+          <a>NY Sock Exchange</a>
         </Link>
       </Logo>
       <Nav />
