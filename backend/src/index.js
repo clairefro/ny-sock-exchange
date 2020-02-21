@@ -45,7 +45,7 @@ server.start({
       credentials: true,
       origin: process.env.FRONTEND_URL
     },
-    port: 4444,
+    port: process.env.PORT,
   }, deets => {
       console.log(`Server is now running on https://localhost:${deets.port}`);
     }
