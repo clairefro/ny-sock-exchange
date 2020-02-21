@@ -45,6 +45,8 @@ server.start({
       credentials: true,
       origin: process.env.FRONTEND_URL
     },
+    // for security - prevent third parties from accessing playground
+    playground: false,
     port: process.env.PORT,
   }, deets => {
       console.log(`Server is now running on https://localhost:${deets.port}`);
