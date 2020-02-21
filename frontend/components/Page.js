@@ -17,6 +17,9 @@ const theme = {
 const StyledPage = styled.div`
   background: white;
   color: ${props => props.theme.black};
+  display: flex;
+  flex-direction: column;
+  min-height: 90vh;
 `;
 
 const Inner = styled.div`
