@@ -27,7 +27,7 @@ const Footer = (props) => (
   <FooterStyles>
     <p>TODO: Write a footer</p>
     <IconLinks>
-      <a href="#"><i class="lab la-instagram"></i></a>
+      <a href="#"><i className="lab la-instagram"></i></a>
       <a href="#"><i className="lab la-facebook-square"></i></a>
       <a href="#"><i className="lab la-twitter"></i></a>
       <a href="#"><i className="lab la-vimeo"></i></a>

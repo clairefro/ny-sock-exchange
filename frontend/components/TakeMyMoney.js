@@ -55,7 +55,7 @@ class TakeMyMoney extends Component {
             >
               {(createOrder) => (
                 <StripeCheckout
-                  amount={calcTotalPrice(me.cart)}
+                  amount={calcTotalPrice(me.cart) || null}
                   name="Sick Fits"
                   description={`Order of ${totalItems(me.cart)} items`}
                   image={me.cart.length && me.cart[0].item && me.cart[0].item.image.toString()}

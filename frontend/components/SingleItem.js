@@ -5,8 +5,32 @@ import styled from 'styled-components';
 import Head from 'next/head';
 import Link from 'next/link';
 import Error from './ErrorMessage';
+import User from './User';
 import AddToCart from './AddToCart';
+import SickButton from './styles/SickButton.js';
 import formatMoney from '../lib/formatMoney';
+
+const CoolCartButton = styled.div`
+  button {
+    background: red;
+    color: white;
+    font-weight: 900;
+    border: 0;
+    border-radius: 0;
+    text-transform: uppercase;
+    font-size: 2rem;
+    padding: 0.8rem 1.5rem;
+    transform: skew(-2deg);
+    display: inline-block;
+    transition: all 0.5s;
+    &[disabled] {
+      opacity: 0.5;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+  }
+`;
 
 const SingleItemStyles = styled.div`
   max-width: 1200px;
@@ -56,7 +80,6 @@ class SingleItem extends Component {
           if(loading) return <p>Loading...</p>
           if(!data.item) return <p>No Item found for id: {this.props.id}</p>
           const item = data.item
-          console.log(item);
           return <SingleItemStyles>
             <Head>
               <title>NY Sock Exchange | {item.title}</title>
@@ -66,7 +89,13 @@ class SingleItem extends Component {
               <h2>Viewing "{item.title}""</h2>
               <p>{formatMoney(item.price)}</p>
               <p>{item.description}</p>
-              <AddToCart id={item.id} />
+              <User>
+              {({ data: { me }})=> (
+                <CoolCartButton>
+                  <AddToCart id={item.id} me={me} />
+                </CoolCartButton>
+              )}
+            </User>
             </div>
           </SingleItemStyles>
         }}
