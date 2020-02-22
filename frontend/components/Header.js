@@ -18,10 +18,13 @@ Router.onRouteChangeError = () => {
   NProgress.done();
 }
 
+
+
 const Logo = styled.h1`
   font-size: 2rem;
   margin-left: 2rem;
   position: relative;
+  padding: 1rem 0;
   z-index: 2;
   transform: skew(-7deg);
   a {
@@ -30,6 +33,10 @@ const Logo = styled.h1`
     color: white;
     text-transform: uppercase;
     text-decoration: none;
+  }
+  img {
+    transform: skew(-7deg);
+    height: 50px;
   }
   @media (max-width: 1300px) {
     text-align: center;
@@ -61,6 +68,7 @@ const Header = (props) => (
   <StyledHeader>
     <div className='bar'>
       <Logo>
+        <img src="../static/favicon.png" alt="nyse-logo"/>
         <Link href="/">
           <a>NY Sock Exchange</a>
         </Link>
