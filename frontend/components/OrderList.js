@@ -37,6 +37,7 @@ class OrderList extends Component {
     return (
       <Query query={USER_ORDERS_QUERY}>
       {({data: { orders }, loading, error}) => {
+        console.log(data);
         if(loading) return <p>Loading...</p>;
         if(error) return <Error error={error} />
         return (

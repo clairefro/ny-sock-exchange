@@ -56,6 +56,7 @@ const Query = {
   async orders(parent, args, ctx, info) {
     // chek if logged in
     if(!ctx.request.userId) throw new Error('You need to be logged in to do that');
+    console.log(ctx.request.userId);
     return ctx.db.query.orders({
       where: {
         user: {
