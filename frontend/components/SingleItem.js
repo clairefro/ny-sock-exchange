@@ -72,7 +72,6 @@ const SINGLE_ITEM_QUERY = gql`
 class SingleItem extends Component {
 
   render() {
-
     return (
       <Query query={SINGLE_ITEM_QUERY} variables={{id: this.props.id}}>
         {({error, loading, data}) => {
@@ -86,7 +85,7 @@ class SingleItem extends Component {
             </Head>
             <img src={item.largeImage} alt={item.title}/>
             <div className='details'>
-              <h2>Viewing "{item.title}""</h2>
+              <h2>Viewing '{item.title}'</h2>
               <p>{formatMoney(item.price)}</p>
               <p>{item.description}</p>
               <User>
