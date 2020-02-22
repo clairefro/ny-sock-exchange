@@ -45,7 +45,9 @@ class Item extends Component {
             </Link>
           }
           <AddToCart id={item.id} />
+          {me && me.id === item.user.id &&
           <DeleteItem id={item.id}>Delete</DeleteItem>
+          }
           </div>
           </ItemStyles>
         );
