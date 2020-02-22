@@ -147,7 +147,7 @@ class CreateItem extends Component {
                 onChange={this.handleChange}
               />
             </label>
-            <button disabled={this.state.isLoadingImage ? true : false} type="submit">Submit</button>
+            <button disabled={this.state.isLoadingImage ? true : false} type="submit">Sell these socks!</button>
           </fieldset>
         </Form>
 

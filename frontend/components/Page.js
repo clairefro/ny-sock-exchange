@@ -52,6 +52,11 @@ const GlobalStyle =
     text-decoration: none;
     color: ${theme.black};
   }
+  button {
+    &:hover {
+      cursor: pointer;
+    }
+  }
 `;
 
 class Page extends Component {
