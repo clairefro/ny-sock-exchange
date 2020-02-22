@@ -9,7 +9,7 @@ const PleaseSignIn = (props) => (
     if(!data.me) {
     return (
       <div>
-        <p>Please log in to continue</p>
+        <p>Please sign in to continue</p>
         <Signin />
       </div>
     );

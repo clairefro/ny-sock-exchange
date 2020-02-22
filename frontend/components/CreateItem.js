@@ -91,7 +91,7 @@ class CreateItem extends Component {
           <fieldset disabled={loading} aria-busy={loading || this.state.isLoadingImage}>
 
             <label htmlFor="file">
-              Product Image
+              Socks Image
               <input
                 type="file"
                 id="file"
@@ -124,7 +124,7 @@ class CreateItem extends Component {
             </label>
 
             <label htmlFor="price">
-              Price
+              Price (USD)
               <input
                 type="number"
                 id="price"
