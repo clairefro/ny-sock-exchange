@@ -42,11 +42,11 @@ const Query = {
         id: args.id,
       }
     }, info);
-    console.log(order);
     // check they have permissions to see order
     const ownsOrder = order.user.id === ctx.request.userId;
+    console.log({ownsOrder})
     const hasPermissionToSeeOrder = ctx.request.user.permissions.includes('ADMIN');
-    if(!ownsOrder || !hasPermissionToSeeOrder) {
+    if(!ownsOrder && !hasPermissionToSeeOrder) {
       throw new Error('You don\'t have permission to view this order.');
     }
     // return order
@@ -56,7 +56,6 @@ const Query = {
   async orders(parent, args, ctx, info) {
     // chek if logged in
     if(!ctx.request.userId) throw new Error('You need to be logged in to do that');
-    console.log(ctx.request.userId);
     return ctx.db.query.orders({
       where: {
         user: {
