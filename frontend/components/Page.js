@@ -27,6 +27,7 @@ const Inner = styled.div`
   margin: 0 auto;
   padding: 2rem;
 `;
+
 const GlobalStyle =
   createGlobalStyle`@font-face {
     font-family: 'radnika_next';
@@ -46,7 +47,8 @@ const GlobalStyle =
     margin: 0;
     font-size: 1.5rem;
     line-height: 2;
-    font-family: 'radnika_next';
+    // font-family: 'radnika_next';
+    font-family: 'radnika_next', sans-serif;
   }
   a {
     text-decoration: none;
