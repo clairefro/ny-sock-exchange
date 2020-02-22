@@ -8,6 +8,7 @@ import gql from 'graphql-tag';
 import calcTotalPrice from '../lib/calcTotalPrice';
 import Error from './ErrorMessage';
 import User, { CURRENT_USER_QUERY } from './User';
+import { TOGGLE_CART_MUTATION } from './Cart';
 
 const CREATE_ORDER_MUTATION = gql`
   mutation createOrder($token: String!) {
@@ -28,7 +29,7 @@ function totalItems(cart) {
 }
 
 class TakeMyMoney extends Component {
-  onToken = async (res, createOrder) => {
+  onToken = async (res, createOrder, toggleCart) => {
     NProgress.start();
     // console.log(res.id);
     // manually call mutation once we have stripe token
@@ -37,6 +38,8 @@ class TakeMyMoney extends Component {
         token: res.id,
       }
     }).catch((err)=> console.log(err.message));
+    // close cart
+    toggleCart();
     Router.push({
       pathname: '/order',
       query: { id: order.data.createOrder.id },
@@ -54,18 +57,22 @@ class TakeMyMoney extends Component {
               refetchQueries={[{ query: CURRENT_USER_QUERY }]}
             >
               {(createOrder) => (
-                <StripeCheckout
-                  amount={calcTotalPrice(me.cart) || null}
-                  name="Sick Fits"
-                  description={`Order of ${totalItems(me.cart)} items`}
-                  image={me.cart.length && me.cart[0].item && me.cart[0].item.image.toString()}
-                  stripeKey="pk_test_FPE4kezM8tLwOelNEeH99FER00Fi9DYv9e"
-                  currency="USD"
-                  email={me.email}
-                  token={res => this.onToken(res, createOrder)}
-                >
-                {this.props.children}
-                </StripeCheckout>
+                <Mutation mutation={TOGGLE_CART_MUTATION}>
+                {(toggleCart)=>(
+                  <StripeCheckout
+                    amount={calcTotalPrice(me.cart) || null}
+                    name="Sick Fits"
+                    description={`Order of ${totalItems(me.cart)} items`}
+                    image={me.cart.length && me.cart[0].item && me.cart[0].item.image.toString()}
+                    stripeKey="pk_test_FPE4kezM8tLwOelNEeH99FER00Fi9DYv9e"
+                    currency="USD"
+                    email={me.email}
+                    token={res => this.onToken(res, createOrder, toggleCart)}
+                  >
+                  {this.props.children}
+                  </StripeCheckout>
+                )}
+                </Mutation>
             )}
           </Mutation>
           )
