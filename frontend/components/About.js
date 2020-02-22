@@ -33,6 +33,10 @@ const AccountDetailStyles = styled.li`
     margin-bottom: 2rem;
     padding-bottom: 2rem;
   }
+  .link {
+    color: ${props => props.theme.red};
+    text-decoration: underline;
+  }
 `;
 
 const ItemStyles = styled.div`
@@ -67,7 +71,13 @@ const About = (props) => (
       <h2>Your socks for sale:</h2>
       <Query query={USER_ITEMS_QUERY} variables={{ id: me.id }}>
       {(data)=> {
-        if(!data) return <p>You haven't listed any socks yet!</p>
+        if(!data.data.userItems.length) return <p>
+        You haven't listed any socks yet...
+        <Link href={{
+          pathname: '/sell'
+        }}>
+        <a className="link">{' '}Sell some!</a>
+        </Link></p>
         return data.data.userItems.map((item)=> (
           <ItemStyles key={item.id}>
             <Link href={{
