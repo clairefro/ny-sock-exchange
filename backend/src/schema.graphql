@@ -10,6 +10,7 @@ type Query {
   users: [User]!
   order(id: ID!): Order
   orders(orderBy: OrderOrderByInput): [Order]!
+  userItems(id: ID!): [Item]
 }
 
 type Mutation {
@@ -34,4 +35,5 @@ type User implements Node {
   permissions: [Permission!]!
   cart: [CartItem!]!
   orders: [OrderItem]
+  items: [Item]
 }

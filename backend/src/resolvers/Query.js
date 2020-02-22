@@ -55,14 +55,24 @@ const Query = {
   async orders(parent, args, ctx, info) {
     // chek if logged in
     if(!ctx.request.userId) throw new Error('You need to be logged in to do that');
-    return ctx.db.query.orders({
+    return await ctx.db.query.orders({
       where: {
         user: {
           id: ctx.request.userId,
         },
       }
     }, info)
-  }
+  },
+  userItems(parent, args, ctx, info) {
+    if(!ctx.request.userId) throw new Error('You need to be logged in to do that');
+    return ctx.db.query.items({
+      where: {
+        user: {
+          id: ctx.request.userId,
+        },
+      }
+    }, info)
+  },
 }
 
 module.exports = Query;
