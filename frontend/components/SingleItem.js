@@ -1,25 +1,35 @@
 import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
-import Error from './ErrorMessage';
 import styled from 'styled-components';
 import Head from 'next/head';
+import Link from 'next/link';
+import Error from './ErrorMessage';
+import AddToCart from './AddToCart';
+import formatMoney from '../lib/formatMoney';
 
 const SingleItemStyles = styled.div`
   max-width: 1200px;
   margin: 2rem auto;
   box-shadow: ${props => {props.theme.bs}};
-  display: grid;
-  grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
-  min-height: 800px;
+  display: flex;
+  align-items: center;
+  min-height: 500px;
   img {
-    width: 100%;
-    height: 100%;
+    width: 40%;
     object-fit: contain;
   }
   .details {
     margin: 3rem;
     font-size: 2rem;
+  }
+  @media (max-width: 700px) {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    img {
+      width: 100%;
+    }
   }
 `;
 
@@ -38,6 +48,7 @@ const SINGLE_ITEM_QUERY = gql`
 class SingleItem extends Component {
 
   render() {
+
     return (
       <Query query={SINGLE_ITEM_QUERY} variables={{id: this.props.id}}>
         {({error, loading, data}) => {
@@ -45,14 +56,17 @@ class SingleItem extends Component {
           if(loading) return <p>Loading...</p>
           if(!data.item) return <p>No Item found for id: {this.props.id}</p>
           const item = data.item
+          console.log(item);
           return <SingleItemStyles>
             <Head>
               <title>NY Sock Exchange | {item.title}</title>
             </Head>
             <img src={item.largeImage} alt={item.title}/>
             <div className='details'>
-              <h2>Viewing {item.title}</h2>
+              <h2>Viewing "{item.title}""</h2>
+              <p>{formatMoney(item.price)}</p>
               <p>{item.description}</p>
+              <AddToCart id={item.id} />
             </div>
           </SingleItemStyles>
         }}

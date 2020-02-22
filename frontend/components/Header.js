@@ -37,6 +37,8 @@ const Logo = styled.h1`
   img {
     transform: skew(21deg);
     height: 50px;
+    postion: relative;
+    right: -5px;
   }
   @media (max-width: 1300px) {
     text-align: center;
