@@ -66,7 +66,7 @@ class Search extends Component {
                 <input
                   {...getInputProps({
                     type: 'search',
-                    placeholder: 'Search for an item...',
+                    placeholder: 'Search for socks...',
                     id: 'search',
                     className: this.state.loading ? 'loading' : '',
                     onChange: e => {

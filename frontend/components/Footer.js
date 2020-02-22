@@ -11,9 +11,28 @@ const FooterStyles = styled.div`
   flex-shrink: 0;
 `;
 
+const IconLinks = styled.div`
+  font-size: 3rem;
+  margin-right: 1rem;
+  a {
+    color: ${props => props.theme.offWhite};
+    margin-right: 0.5rem;
+    &:hover {
+      color: ${props => props.theme.red};
+    }
+  }
+`;
+
 const Footer = (props) => (
   <FooterStyles>
     <p>TODO: Write a footer</p>
+    <IconLinks>
+      <a href="#"><i class="lab la-instagram"></i></a>
+
+      <a href="#"><i class="lab la-facebook-square"></i></a>
+      <a href="#"><i class="lab la-twitter"></i></a>
+      <a href="#"><i class="lab la-vimeo"></i></a>
+    </IconLinks>
   </FooterStyles>
 );
 

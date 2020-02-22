@@ -54,7 +54,10 @@ const NavStyles = styled.ul`
         width: calc(100% - 60px);
       }
     @media (max-width: 700px) {
-        width: calc(100% - 10px);
+      &:after {
+        width: calc(100% - 20px);
+        margin-top: 1rem;
+      }
     }
     }
   }
