@@ -35,25 +35,24 @@ const CartItem = ({ cartItem }) => {
       pathname: '/item',
       query: { id: cartItem.item.id}
     }}>
-     <a>
-       <img
-         src={cartItem.item.image}
-         alt={cartItem.item.title}
-         width="100px"
-         />
-       <div className="cart-item-details">
-         <h3>{cartItem.item.title}</h3>
-         <p>
-           {formatMoney(cartItem.item.price * cartItem.quantity)}
-           {' - '}
-           <em>
-             {cartItem.quantity} &times; {formatMoney(cartItem.item.price)} ea.
-           </em>
-           </p>
-       </div>
-       <RemoveFromCart id={cartItem.id} />
-     </a>
-
+       <a>
+         <img
+           src={cartItem.item.image}
+           alt={cartItem.item.title}
+           width="100px"
+           />
+         <div className="cart-item-details">
+           <h3>{cartItem.item.title}</h3>
+           <p>
+             {formatMoney(cartItem.item.price * cartItem.quantity)}
+             {' - '}
+             <em>
+               {cartItem.quantity} &times; {formatMoney(cartItem.item.price)} ea.
+             </em>
+             </p>
+         </div>
+         <RemoveFromCart id={cartItem.id} />
+       </a>
       </Link>
     </CartItemStyles>
   );
