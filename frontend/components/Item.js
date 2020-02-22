@@ -7,6 +7,7 @@ import ItemStyles from './styles/ItemStyles';
 import PriceTag from './styles/PriceTag';
 import DeleteItem from './DeleteItem';
 import AddToCart from './AddToCart';
+import Error from './ErrorMessage';
 import User from './User';
 import formatMoney from '../lib/formatMoney'
 
@@ -44,7 +45,7 @@ class Item extends Component {
               <a>Edit</a>
             </Link>
           }
-          <AddToCart id={item.id} />
+          <AddToCart id={item.id} me={me}/>
           {me && me.id === item.user.id &&
           <DeleteItem id={item.id}>Delete</DeleteItem>
           }
