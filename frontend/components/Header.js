@@ -3,10 +3,12 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import Router from 'next/router';
 import NProgress from 'nprogress';
+import { Query } from 'react-apollo';
 
 import Nav from './Nav';
 import Cart from './Cart';
 import Search from './Search';
+import { CURRENT_USER_QUERY } from './User';
 
 Router.onRouteChangeStart = () => {
   NProgress.start();
@@ -17,7 +19,6 @@ Router.onRouteChangeComplete = () => {
 Router.onRouteChangeError = () => {
   NProgress.done();
 }
-
 
 const Logo = styled.h1`
   font-size: 2rem;
@@ -64,23 +65,43 @@ const StyledHeader = styled.div`
   }
 `;
 
+const GreetingStyles = styled.p`
+  padding: 0 1rem;
+  margin-bottom: 0;
+  margin-top: 0.5rem;
+`;
+
+const Greeting = ({name}) => {
+  // grab only first part of name
+  const fname = name.split(' ')[0];
+  return (
+    <GreetingStyles>Hi, {fname}!</GreetingStyles>
+  )
+}
+
 
 const Header = (props) => (
-  <StyledHeader>
-    <div className='bar'>
-      <Logo>
-        <img src="../static/favicon.png" alt="nyse-logo"/>
-        <Link href="/">
-          <a>NY Sock Exchange</a>
-        </Link>
-      </Logo>
-      <Nav />
-    </div>
-    <div className='subbar'>
-      <Search />
-    </div>
-    <Cart />
-  </StyledHeader>
+  <Query query={CURRENT_USER_QUERY}>
+  {({data: {me}})=> (
+      <StyledHeader>
+        <div className='bar'>
+          <Logo>
+            <img src="../static/favicon.png" alt="nyse-logo"/>
+            <Link href="/">
+              <a>NY Sock Exchange</a>
+            </Link>
+          </Logo>
+          <Nav />
+        </div>
+        <div className='subbar'>
+          <Search />
+          {me && <Greeting name={me.name} />}
+        </div>
+        <Cart />
+      </StyledHeader>
+    )}
+  </Query>
+
 );
 
 export default Header;

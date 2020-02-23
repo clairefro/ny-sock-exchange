@@ -68,7 +68,7 @@ const About = (props) => (
         <span>Email:{' '}</span>
         <span>{me.email}</span>
       </p>
-      <h2>Your socks for sale:</h2>
+      <h2>Your socks for sale</h2>
       <Query query={USER_ITEMS_QUERY} variables={{ id: me.id }}>
       {(data)=> {
         if(!data.data.userItems.length) return <p>
