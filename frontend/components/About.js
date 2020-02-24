@@ -7,7 +7,6 @@ import Head from 'next/head';
 import OrderItemStyles from '../components/styles/OrderItemStyles';
 import User from '../components/User';
 import CartItem from '../components/CartItem';
-import PleaseSignIn from '../components/PleaseSignIn';
 import formatMoney from '../lib/formatMoney';
 
 const USER_ITEMS_QUERY = gql`
@@ -57,7 +56,6 @@ const ItemStyles = styled.div`
 `;
 
 const About = (props) => (
-  <PleaseSignIn>
   <User>
   {({ data: { me }})=> (
     <AccountDetailStyles>
@@ -107,7 +105,6 @@ const About = (props) => (
     </AccountDetailStyles>
   )}
   </User>
-  </PleaseSignIn>
 );
 
 export default About;

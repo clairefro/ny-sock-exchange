@@ -4,7 +4,9 @@ import About from '../components/About';
 
 
 const AccountPage = props => (
-  <About />
+  <PleaseSignIn>
+    <About />
+  </PleaseSignIn>
 );
 
 export default AccountPage;
