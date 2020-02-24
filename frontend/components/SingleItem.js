@@ -42,12 +42,18 @@ const SingleItemStyles = styled.div`
   img {
     width: 40%;
     object-fit: contain;
+    box-shadow: ${props => props.theme.bs};
   }
   .details {
-    margin: 3rem;
+    margin: 2rem;
     font-size: 2rem;
-    padding: 1rem;
-    box-shadow: ${props => props.theme.bs}
+    padding: 0 3rem;
+    padding-bottom: 5rem;
+    flex-grow: 1;
+    box-shadow: ${props => props.theme.bs};
+    h2 {
+      border-bottom: red solid 3px;
+    }
   }
   @media (max-width: 700px) {
     display: flex;
@@ -90,13 +96,13 @@ class SingleItem extends Component {
               <h2>Viewing '{item.title}'</h2>
               <p>{formatMoney(item.price)}</p>
               <p>{item.description}</p>
-              <User>
-              {({ data: { me }})=> (
-                <CoolCartButton>
-                  <AddToCart id={item.id} me={me} />
-                </CoolCartButton>
-              )}
-            </User>
+                <User>
+                {({ data: { me }})=> (
+                  <CoolCartButton>
+                    <AddToCart id={item.id} me={me} />
+                  </CoolCartButton>
+                )}
+              </User>
             </div>
           </SingleItemStyles>
         }}
