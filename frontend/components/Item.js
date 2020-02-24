@@ -37,18 +37,18 @@ class Item extends Component {
             </a>
           </Link>
           <div className="buttonList">
-          {me && me.id === item.user.id &&
-            <Link href={{
-              pathname: 'update',
-              query: { id: item.id },
-            }}>
-              <a>Edit</a>
-            </Link>
-          }
-          <AddToCart id={item.id} me={me}/>
-          {me && me.id === item.user.id &&
-          <DeleteItem id={item.id}>Delete</DeleteItem>
-          }
+            {me && me.id === item.user.id &&
+              <Link href={{
+                pathname: 'update',
+                query: { id: item.id },
+              }}>
+                <a>Edit</a>
+              </Link>
+            }
+            <AddToCart id={item.id} me={me}/>
+            {me && me.id === item.user.id &&
+            <DeleteItem id={item.id}>Delete</DeleteItem>
+            }
           </div>
           </ItemStyles>
         );

@@ -23,6 +23,7 @@ const Item = styled.div`
   }
   .buttonList {
     display: grid;
+    margin-top:auto;
     width: 100%;
     border-top: 1px solid ${props => props.theme.lightgrey};
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
