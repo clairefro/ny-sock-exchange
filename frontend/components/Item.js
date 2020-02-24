@@ -23,18 +23,19 @@ class Item extends Component {
       {({ data: { me }})=> {
         return (
           <ItemStyles>
-          {item.image && <img src={item.image} alt={item.title}/>}
-          <Title>
           <Link href={{
             pathname: '/item',
             query: { id: item.id },
           }}>
-          <a>{item.title}</a>
+            <a>
+              {item.image && <img src={item.image} alt={item.title}/>}
+              <Title>
+              <a>{item.title}</a>
+              </Title>
+              <PriceTag>{formatMoney(item.price)}</PriceTag>
+              <p>{item.description}</p>
+            </a>
           </Link>
-          </Title>
-          <PriceTag>{formatMoney(item.price)}</PriceTag>
-          <p>{item.description}</p>
-
           <div className="buttonList">
           {me && me.id === item.user.id &&
             <Link href={{
