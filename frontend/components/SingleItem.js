@@ -46,6 +46,8 @@ const SingleItemStyles = styled.div`
   .details {
     margin: 3rem;
     font-size: 2rem;
+    padding: 1rem;
+    box-shadow: ${props => props.theme.bs}
   }
   @media (max-width: 700px) {
     display: flex;

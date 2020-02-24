@@ -30,7 +30,7 @@ class Item extends Component {
             <a>
               {item.image && <img src={item.image} alt={item.title}/>}
               <Title>
-              <a>{item.title}</a>
+              <span>{item.title}</span>
               </Title>
               <PriceTag>{formatMoney(item.price)}</PriceTag>
               <p>{item.description}</p>
