@@ -60,7 +60,7 @@ class TakeMyMoney extends Component {
                 <Mutation mutation={TOGGLE_CART_MUTATION}>
                 {(toggleCart)=>(
                   <StripeCheckout
-                    amount={calcTotalPrice(me.cart) || null}
+                    amount={calcTotalPrice(me.cart)}
                     name="Sick Fits"
                     description={`Order of ${totalItems(me.cart)} items`}
                     image={me.cart.length && me.cart[0].item && me.cart[0].item.image.toString()}

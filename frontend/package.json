@@ -1,7 +1,7 @@
 {
-  "name": "sick-fits-frontend",
+  "name": "nyse-next-prod",
   "version": "1.0.0",
-  "description": "Sick Fits! An example React, GraphQL, Next and Apollo",
+  "description": "NY Sock Exchange - Buy and sell socks",
   "main": "index.js",
   "scripts": {
     "dev": "next -p 7777",
