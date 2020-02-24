@@ -9,9 +9,6 @@ const NavStyles = styled.ul`
   a:first-of-type {
     margin-left: 2rem;
   }
-  a:last-of-type {
-    margin-right: 2rem;
-  }
   a,
   button {
     padding: 1rem 3rem;
