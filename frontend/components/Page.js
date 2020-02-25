@@ -21,7 +21,7 @@ const StyledPage = styled.div`
   flex-direction: column;
 
   .page-container {
-    /* min-height: 100vh; */
+    min-height: calc(100vh - 200px - 83px - 50px - 100px);
     overflow: hidden;
   }
 `;
@@ -79,8 +79,8 @@ class Page extends Component {
               <Inner>
               {this.props.children}
               </Inner>
-              <Footer />
             </div>
+            <Footer />
           </StyledPage>
         </ThemeProvider>
     );

@@ -13,8 +13,8 @@ const FooterStyles = styled.div`
   width: 100%;
   height: 20rem;
   justify-self: flex-end;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  
   a {
     color: ${props => props.theme.offWhite};
     &:hover {
@@ -37,7 +37,9 @@ const Footer = (props) => (
   <Link href={{pathname: '/about_site'}}>
     <a>About this site</a>
   </Link>
-    <a href="#">About the creator</a>
+  <Link href={{pathname: '/about_dev'}}>
+    <a>About the creator</a>
+  </Link>
     <IconLinks>
       <a href="#"><i className="lab la-instagram"></i></a>
       <a href="#"><i className="lab la-facebook-square"></i></a>
