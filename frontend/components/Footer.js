@@ -7,16 +7,17 @@ const FooterStyles = styled.div`
   background-color: ${props => props.theme.grey};
   color: ${props => props.theme.offWhite};
   font-family: Arial;
-  padding: 20px;
+  padding: 4rem;
   margin-top: 60px;
   flex-shrink: 0;
   width: 100%;
   height: 20rem;
   justify-self: flex-end;
-  display: grid;
-  
+  display: block;
+  text-align: right;
   a {
     color: ${props => props.theme.offWhite};
+    display: block;
     &:hover {
       color: ${props => props.theme.red};
     }
@@ -25,10 +26,11 @@ const FooterStyles = styled.div`
 
 const IconLinks = styled.div`
   font-size: 3rem;
-  margin-right: 1rem;
+  margin-left: 1rem;
   align-self: center;
   a {
-    margin-right: 1rem;
+    display: inline-block;
+    margin-left: 1rem;
   }
 `;
 
