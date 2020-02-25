@@ -22,3 +22,5 @@ Enjoy a fake shopping spree on me with my credit card: 4242 4242 4242 4242 (exp.
 | <img src="/frontend/static/icons/jest.png" width="100">  | Jest |
 | <img src="/frontend/static/icons/enzyme.jpeg" width="100"> | Enzyme |
 
+
+Icons: [Line Awesome](https://github.com/icons8/line-awesome)
