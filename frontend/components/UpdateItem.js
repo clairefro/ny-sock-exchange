@@ -52,8 +52,6 @@ class UpdateItem extends Component {
 
   updateItem = async (e, updateItemMutation) => {
     e.preventDefault();
-    console.log('Updating Item....');
-    console.log(this.state);
     // update the item in db
     const res = await updateItemMutation({
       variables: {
@@ -61,7 +59,10 @@ class UpdateItem extends Component {
         ...this.state,
       }
     });
-    console.log('updated');
+    Router.push({
+      pathname: '/item',
+      query: { id: this.props.id},
+    });
   }
 
   render() {
