@@ -86,7 +86,7 @@ const About = (props) => (
         <span>{me.email}</span>
       </p>
       <h2>Your socks for sale</h2>
-      <Query query={USER_ITEMS_QUERY} refetchQueries={[{query: USER_ITEMS_QUERY}]} variables={{ id: me.id }}>
+      <Query query={USER_ITEMS_QUERY} variables={{ id: me.id }}>
       {(data)=> {
         if(!data.data.userItems.length) return <p>
         You haven't listed any socks yet...
