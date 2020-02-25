@@ -7,6 +7,11 @@ const Item = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  transition: 0.3s;
+  &:hover {
+    transform: scale(1.04);
+    transition: 0.3s;
+  }
   img {
     width: 100%;
     height: 400px;
