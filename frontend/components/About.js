@@ -26,7 +26,9 @@ const AccountDetailStyles = styled.li`
   box-shadow: ${props => props.theme.bs};
   list-style: none;
   width: 60vw;
+  align-self: center;
   padding: 2rem;
+  margin-right:0;
   border-bottom: 4px solid ${props => props.theme.red};
   h2 {
     border-bottom: 2px solid red;
