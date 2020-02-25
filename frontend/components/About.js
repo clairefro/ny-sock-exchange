@@ -7,6 +7,7 @@ import Head from 'next/head';
 import OrderItemStyles from '../components/styles/OrderItemStyles';
 import User from '../components/User';
 import CartItem from '../components/CartItem';
+import DeleteItem from '../components/DeleteItem';
 import formatMoney from '../lib/formatMoney';
 
 const USER_ITEMS_QUERY = gql`
@@ -40,9 +41,11 @@ const AccountDetailStyles = styled.li`
 `;
 
 const ItemStyles = styled.div`
+  border-bottom: 1px solid ${props => props.theme.lightgrey};
+  display: flex;
+  justify-content:
   a {
     padding: 1rem 0;
-    border-bottom: 1px solid ${props => props.theme.lightgrey};
     display: grid;
     align-items: center;
     grid-template-columns: auto 1fr auto;
@@ -52,6 +55,10 @@ const ItemStyles = styled.div`
     h3,p {
       margin: 0;
     }
+  }
+  .actions {
+    display: flex;
+    justify-self: flex-end;
   }
 `;
 
@@ -80,24 +87,36 @@ const About = (props) => (
         </Link></p>
         return data.data.userItems.map((item)=> (
           <ItemStyles key={item.id}>
-            <Link href={{
-              pathname: '/item',
-              query: { id: item.id}
-            }}>
-               <a>
-                 <img
-                   src={item.image}
-                   alt={item.title}
-                   width="100px"
-                   />
-                 <div className="cart-item-details">
-                   <h3>{item.title}</h3>
-                   <p>
-                     {formatMoney(item.price)}
-                    </p>
-                 </div>
-               </a>
+            <div className="itemDetails">
+              <Link href={{
+                pathname: '/item',
+                query: { id: item.id}
+              }}>
+                 <a>
+                   <img
+                     src={item.image}
+                     alt={item.title}
+                     width="100px"
+                     />
+                   <div className="cart-item-details">
+                     <h3>{item.title}</h3>
+                     <p>
+                       {formatMoney(item.price)}
+                      </p>
+                   </div>
+                 </a>
               </Link>
+            </div>
+
+            <div className="actions">
+              <Link href={{
+                pathname: 'update',
+                query: { id: item.id },
+              }}>
+                <a>Edit</a>
+              </Link>
+              <DeleteItem id={item.id}>Delete</DeleteItem>
+            </div>
           </ItemStyles>
         ))
       }}

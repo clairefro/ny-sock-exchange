@@ -9,6 +9,11 @@ const FooterStyles = styled.div`
   padding: 20px;
   margin-top: 60px;
   flex-shrink: 0;
+  /* position: absolute; */
+  /* bottom: 0; */
+  width: 100%;
+  height: 20rem;
+  justify-self: flex-end;
 `;
 
 const IconLinks = styled.div`

@@ -19,13 +19,18 @@ const StyledPage = styled.div`
   color: ${props => props.theme.black};
   display: flex;
   flex-direction: column;
-  min-height: 90vh;
+
+  .page-container {
+    min-height: 100vh;
+    overflow: hidden;
+  }
 `;
 
 const Inner = styled.div`
   max-width: ${props => props.theme.maxWidth};
   margin: 0 auto;
   padding: 2rem;
+  /* padding-bottom: 5rem;  */
 `;
 
 const GlobalStyle =
@@ -69,10 +74,12 @@ class Page extends Component {
           <StyledPage>
             <Meta />
             <Header />
-            <Inner>
-            {this.props.children}
-            </Inner>
-            <Footer />
+            <div className="page-container">
+              <Inner>
+              {this.props.children}
+              </Inner>
+              <Footer />
+            </div>
           </StyledPage>
         </ThemeProvider>
     );
