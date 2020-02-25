@@ -43,7 +43,7 @@ const AccountDetailStyles = styled.li`
 const ItemStyles = styled.div`
   border-bottom: 1px solid ${props => props.theme.lightgrey};
   display: flex;
-  justify-content:
+  justify-content: space-between;
   a {
     padding: 1rem 0;
     display: grid;
@@ -59,6 +59,16 @@ const ItemStyles = styled.div`
   .actions {
     display: flex;
     justify-self: flex-end;
+    a:first-of-type {
+      margin-right: 1em;
+    }
+    button {
+      background: transparent;
+      border: none;
+      font-family: 'radnika_next';
+      font-size: 15px;
+      color: ${props => props.theme.black};
+    }
   }
 `;
 
@@ -76,7 +86,7 @@ const About = (props) => (
         <span>{me.email}</span>
       </p>
       <h2>Your socks for sale</h2>
-      <Query query={USER_ITEMS_QUERY} variables={{ id: me.id }}>
+      <Query query={USER_ITEMS_QUERY} refetchQueries={[{query: USER_ITEMS_QUERY}]} variables={{ id: me.id }}>
       {(data)=> {
         if(!data.data.userItems.length) return <p>
         You haven't listed any socks yet...
@@ -127,3 +137,4 @@ const About = (props) => (
 );
 
 export default About;
+export { USER_ITEMS_QUERY };
