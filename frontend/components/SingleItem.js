@@ -73,6 +73,10 @@ const SINGLE_ITEM_QUERY = gql`
       description
       largeImage
       price
+      user {
+        id
+        name
+      }
     }
   }
 `;
@@ -94,7 +98,7 @@ class SingleItem extends Component {
             <img src={item.largeImage} alt={item.title}/>
             <div className='details'>
               <h2>Viewing '{item.title}'</h2>
-              <p>{formatMoney(item.price)}</p>
+              <p>{formatMoney(item.price)} - Seller: {item.user.name}</p>
               <p>{item.description}</p>
                 <User>
                 {({ data: { me }})=> (
