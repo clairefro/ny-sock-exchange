@@ -40,7 +40,7 @@ const Footer = (props) => (
     <a>About this site</a>
   </Link>
   <Link href={{pathname: '/about_dev'}}>
-    <a>About the creator</a>
+    <a>About the dev</a>
   </Link>
     <IconLinks>
       <a href="#"><i className="lab la-instagram"></i></a>

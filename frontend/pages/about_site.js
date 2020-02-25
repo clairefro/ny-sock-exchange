@@ -8,10 +8,11 @@ const SitePageStyles = styled.div`
   .stack {
     display: flex;
     flex-wrap: wrap;
+
   }
   table {
     text-align: left;
-    margin-right: 5rem;
+    margin-right: 8rem;
     th {
       border-bottom: solid 2px ${props => props.theme.red};
     }
@@ -24,6 +25,7 @@ const SitePageStyles = styled.div`
 
 const AboutSitePage = props => (
   <SitePageStyles>
+  <>
     <h2>This is a fake e-commerce site.</h2>
     <p>If you really want to sell your socks, try <a href="https://www.craigslist.org/about/sites" target="_blank">CraigsList</a>.</p>
     <p>Or enjoy a fake shopping spree here with my credit card: 4242 4242 4242 4242 (exp. 2/22, sec. code: 222)</p>
@@ -88,7 +90,7 @@ const AboutSitePage = props => (
         </tbody>
       </table>
     </div>
-
+  </>
 
   </SitePageStyles>
 );
